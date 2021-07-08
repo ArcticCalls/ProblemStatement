@@ -18,6 +18,12 @@
         android:layout_height="wrap_content"
         android:text="We now have 3 branches. Look for  the address and info" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/hqs"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

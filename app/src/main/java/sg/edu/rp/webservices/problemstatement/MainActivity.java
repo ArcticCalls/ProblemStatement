@@ -10,7 +10,10 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -24,9 +27,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btn1, btn2, btn3;
+    Spinner spin;
     private GoogleMap map;
 
     @Override
@@ -35,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FragmentManager fm = getSupportFragmentManager();
         SupportMapFragment mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
-
+        spin = findViewById(R.id.spinner);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
+
+
         mapFragment.getMapAsync(new OnMapReadyCallback(){
             @Override
             public void onMapReady(GoogleMap googleMap) {
@@ -46,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 LatLng Singapore = new LatLng(1.352083, 103.819836);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(Singapore,
                         15));
+
 
                 int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this,
                         android.Manifest.permission.ACCESS_FINE_LOCATION);
@@ -126,6 +136,38 @@ public class MainActivity extends AppCompatActivity {
                 LatLng poi_East = new LatLng(1.350051874296315 , 103.93441447123747);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_East,
                         15));
+            }
+        });
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int mapswitch = spin.getSelectedItemPosition();
+                switch (mapswitch){
+                    case 0:
+                        LatLng poi_North = new LatLng(1.4413677852710576, 103.77224705786413);
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_North,
+                                15));
+                        break;
+                    case 1:
+                        LatLng poi_Central = new LatLng(1.2979403767034838 , 103.84751778671382);
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_Central,
+                                15));
+                        break;
+                    case 2:
+                        LatLng poi_East = new LatLng(1.350051874296315 , 103.93441447123747);
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_East,
+                                15));
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
