@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         .snippet("Block 555, Tampines Ave 3, 287788 \n" +
                                 "Operating hours: 9am-5pm\n" +
                                 "Tel:66776677\"\n")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
